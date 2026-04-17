@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полиция Нью-Йорка - Официальный сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 5px 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .hero {
+            background: url('https://avatars.mds.yandex.net/i?id=fad866e4674652a7264c3bf77d0bd011_l-4571283-images-thumbs&n=13') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #003366;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            text-align: center;
+            max-width: 250px;
+            margin: 20px auto 0;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: #003366;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #ffcc00;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .about-text {
+            flex: 1;
+            width: 100%;
+        }
+
+        .about-text h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #003366;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .about-image {
+            flex: 1;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .services {
+            background: #f0f5ff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Специальный класс для карточки, которая занимает все 3 колонки */
+        .full-width-card {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+        }
+
+        .service-img img {
+            width: auto;
+            height: auto;
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+                .service-im {
+            height: 220px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+        }
+                .service-im img {
+            width: auto;
+            height: auto;
+            max-width: 500px;
+            max-height: 500px;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+
+        /* Специальные стили для разных карточек */
+        .service-card[href="coppo.html"] .service-img img,
+        .service-card:has(img[alt="Патрульная служба"]) .service-img img {
+            max-width: 220px;
+            max-height: 220px;
+        }
+
+        .service-card[href="copaux.html"] .service-img img {
+            max-width: 250px;
+            max-height: 250px;
+        }
+
+        .service-card[href="polaws.html"] .service-img img {
+            max-width: 250px;
+            max-height: 250px;
+        }
+
+        .service-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .service-content h3 {
+            color: #003366;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            min-height: 2.8rem;
+        }
+
+        .service-content p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .stats {
+            background: linear-gradient(to right, #003366, #0055a4);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #003366;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #003366;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        footer {
+            background: #002244;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .service-btn {
+            display: inline-block;
+            background: #003366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: auto;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .service-btn:hover {
+            background: #0055a4;
+        }
+
+        /* Медиа-запросы для планшетов */
+        @media (min-width: 768px) {
+            .logo {
+                margin-left: 0;
+            }
+
+            .logo-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.6rem;
+            }
+
+            nav {
+                width: auto;
+                margin-top: 0;
+            }
+
+            nav ul {
+                justify-content: flex-end;
+            }
+
+            nav li {
+                margin-left: 20px;
+            }
+
+            .hero {
+                height: 600px;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .hero-content {
+                text-align: left;
+                margin-left: 0;
+            }
+
+            .btn {
+                margin: 30px 0 0 0;
+            }
+
+            .about-content {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                width: 90%;
+                padding: 0;
+            }
+
+            .hero {
+                height: 700px;
+            }
+
+            .hero h2 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+
+            .hero-content {
+                max-width: 800px;
+                margin-left: 0;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+
+            .stat-item h3 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Медиа-запросы для очень маленьких экранов */
+        @media (max-width: 480px) {
+            .hero {
+                height: 400px;
+            }
+
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            .service-img {
+                height: 180px;
+            }
+
+            .service-img img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="path1.png" alt="NYPD Logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Полиция Нью-Йорка</h1>
+                        <p>Департамент полиции Нью-Йорка</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Службы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Служим и защищаем Нью-Йорк</h2>
+                <p>Департамент полиции Нью-Йорка стремится улучшить качество жизни всех жителей города и его окрестностей, работая в партнерстве с сообществом для обеспечения правопорядка, сохранения мира и создания безопасной среды.</p>
+                <a href="#about" class="btn">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>О Департаменте</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Департамент полиции Нью-Йорка (<b>NYPD</b>)</h2>
+                    <p>Является крупнейшим и одним из старейших муниципальных полицейских департаментов в Соединенных Штатах. Основанный в 1845 году, <b>NYPD</b> имеет богатую историю служения и защиты жителей Нью-Йорка.</p>
+                    <p>На сегодняшний день в департаменте работает примерно 36 000 офицеров и 19 000 гражданских сотрудников, охватывая территорию в 468 квадратных миль и население около 8.5 Миллионов человек.</p>
+                    <p>Миссия <b>NYPD</b> - улучшить качество жизни в Нью-Йорке, работая в партнерстве с сообществом для обеспечения правопорядка, сохранения мира, создания безопасной среды и снижения уровня страха.</p>
+                    <p>Департамент организован в различные бюро и подразделения, включая Патрульную службу, Детективное бюро, Транспортное бюро, Жилищное бюро и многие специализированные подразделения, которые решают конкретные проблемы преступности и потребности сообщества.</p>
+                </div>
+                <div class="about-image">
+                    <img src="logo.jpg" alt="Офицеры полиции Нью-Йорка">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши службы</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Патрульная служба -> coppo.html -->
+                <a href="coppo.html" class="service-card">
+                    <div class="service-img">
+                        <img src="po.png" alt="Патрульная служба">
+                    </div>
+                    <div class="service-content">
+                        <h3>Патрульная служба</h3>
+                        <p>Основа NYPD, патрульные офицеры реагируют на экстренные вызовы, проводят регулярные патрулирования и взаимодействуют с сообществом для предотвращения преступности и поддержания общественного порядка.</p>
+                        <div class="service-btn">Подробнее</div>
+                    </div>
+                </a>
+                <!-- Детективное бюро -> copdt.html -->
+                <a href="copdt.html" class="service-card">
+                    <div class="service-img">
+                        <img src="dt.png" alt="Детективное бюро">
+                    </div>
+                    <div class="service-content">
+                        <h3>Детективное бюро</h3>
+                        <p>Детективы NYPD расследуют серьезные преступления, собирают доказательства, опрашивают свидетелей и работают над раскрытием дел от краж до убийств.</p>
+                        <div class="service-btn">Подробнее</div>
+                    </div>
+                </a>
+                <!-- Вспомогательная полиция -> copaux.html (третий в верхнем ряду) -->
+                <a href="copaux.html" class="service-card">
+                    <div class="service-img">
+                        <img src="auxx.png" alt="Вспомогательная полиция">
+                    </div>
+                    <div class="service-content">
+                        <h3>Вспомогательная полиция (Auxiliary)</h3>
+                        <p>Волонтерское подразделение NYPD, состоящее из граждан, которые помогают регулярной полиции в патрулировании, наблюдении и общественных мероприятиях. Auxiliary офицеры работают в тесном сотрудничестве с сообществом, обеспечивая дополнительное присутствие и поддержку.</p>
+                        <div class="service-btn">Подробнее</div>
+                    </div>
+                </a>
+                <!-- Мануал / Общая информация -> polaws.html (растянута на всю ширину) -->
+                <a href="polawsglav.html" class="service-card full-width-card">
+                    <div class="service-im">
+                        <img src="path.png" alt="Мануал и правовая информация">
+                    </div>
+                    <div class="service-content">
+                        <h3>Общая информация, мануал и правовые основы</h3>
+                        <p>Полный сборник руководств, процедур, протоколов действий и оперативных стандартов для патрульной службы NYPD. Здесь представлены актуальные правовые нормы, внутренние регламенты, методические рекомендации и официальные документы, необходимые для эффективного несения службы. Доступ к мануалам, кодексам поведения и стратегическим инструкциям.</p>
+                        <div class="service-btn">Изучить мануал</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Полиция Нью-Йорка</h3>
+                    <p>Департамент полиции Нью-Йорка стремится защищать жизнь и имущество наших сограждан и предотвращать преступность и страх, обеспечивая безопасную и защищенную среду.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Службы</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контактная информация</h3>
+                    <ul class="footer-links">
+                        <li>Brooklin 29 sector, 92 police deportament</li>
+                        <li>Телефон: 555-2424-22</li>
+                        <li>Email: FreeDrugs@gmail.com</li>
+                        <li>Экстренный вызов: 911</li>
+                        <li>Спец-связь: Conlex</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 20** Департамент полиции Нью-Йорка. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
