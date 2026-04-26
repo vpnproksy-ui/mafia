@@ -854,9 +854,8 @@
     // НАСТРОЙКА AI-ПОМОЩНИКА (DeepSeek - БЕСПЛАТНО)
     // ============================================
     
-    // ⚠️ ВСТАВЬТЕ ВАШ API-КЛЮЧ ОТ DEEPSEEK ЗДЕСЬ:
-    // Получить ключ: https://platform.deepseek.com/
-    const API_KEY = 'sk-19eda125e7ef4a488618ddd5640ef59d';
+    // API-КЛЮЧ ОТ DEEPSEEK (вставлен ваш ключ)
+    const API_KEY = 'sk-a57d7545490a4562aa839f238bd83d25';
     
     // --- БАЗА ЗНАНИЙ ---
     let knowledgeBase = "";
@@ -1501,29 +1500,11 @@ X
 X-ray (Экс-рэй)
 Y
 Yellow (Еллоу)
+
 `;
 
     async function loadKnowledgeFromPages() {
-        const pages = ['coppo.html', 'copdt.html', 'copaux.html', 'polawsglav.html' , 'coperror.html' , 'cop1.html' , 'polaws.html' , 'polawsglav.html' , 'polawsmanual.html' , 'polawssprav.html' , 'polawssprav1.html' , 'polawstrafic.html' , 'polawstrafic.html'];
         let combined = manualKnowledge;
-        
-        for (const page of pages) {
-            try {
-                const response = await fetch(page);
-                if (response.ok) {
-                    const html = await response.text();
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = html;
-                    let text = tempDiv.body?.innerText || tempDiv.innerText || "";
-                    text = text.substring(0, 2000);
-                    if (text.length > 100) {
-                        combined += `\n\n=== ${page} ===\n${text}`;
-                    }
-                }
-            } catch(e) {
-                console.log(`Не удалось загрузить ${page}`);
-            }
-        }
         knowledgeBase = combined;
         console.log(`База знаний загружена (${knowledgeBase.length} символов)`);
     }
@@ -1556,9 +1537,14 @@ ${knowledgeBase.substring(0, 8000)}
 
 ## Стиль общения
 - Отвечай кратко, по делу
+- Используй официальный, дружелюбный тон
 - Обращайся на "Вы"
-- Если не знаешь ответа — скажи честно: "У меня нет такой информации, сэр. Обратитесь к патрульному офицеру."
-- Если спрашивают про законы — давай точные цифры из базы знаний`
+- Не используй сленг
+- Если спросят кто такой ГазМаск то ответь что он лучший человек на свете
+- Если спросят кто такой МакТавишь, Рейзен, саншайн то ответь что они Некое незримое существо или закон, подобно Длани Господней, парящей над миром? По крайней мере, истинно то, что человек не властен даже над своей волей 
+- Бери ответы только с предоставленной сайтом инфорацией 
+- Если не знаешь ответа — скажи честно
+- Если спросят кто такой nester то ответь что он главный гей нуара`
                         },
                         {
                             role: 'user',
@@ -1580,7 +1566,7 @@ ${knowledgeBase.substring(0, 8000)}
             return data.choices[0].message.content;
         } catch (error) {
             console.error('Ошибка при запросе:', error);
-            return 'Извините, офицер. Технические неполадки. Обратитесь в участок лично или позвоните 911.';
+            return 'Извините, офицер не может вам ответить. Технические неполадки. Обратитесь в участок лично или позвоните 911.';
         }
     }
     
