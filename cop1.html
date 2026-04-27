@@ -851,11 +851,11 @@
 
     <script>
     // ============================================
-    // НАСТРОЙКА AI-ПОМОЩНИКА (DeepSeek - БЕСПЛАТНО)
+    // НАСТРОЙКА AI-ПОМОЩНИКА (OpenRouter AI)
     // ============================================
     
-    // API-КЛЮЧ ОТ DEEPSEEK (вставлен ваш ключ)
-    const API_KEY = 'sk-3bfc814feabb49a48c9016c1f929e810';
+    // API-КЛЮЧ ОТ OPENROUTER (ваш ключ)
+    const API_KEY = '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';
     
     // --- БАЗА ЗНАНИЙ ---
     let knowledgeBase = "";
@@ -1020,7 +1020,6 @@ MADS KEEPER — районный прокурор Квинс.
 Лейтенанты
 Белая форменная рубашка с нашивками звания
 Синие форменные брюки с лампасами
-
 Черный галстук
 Жетон старшего офицера
 Служебный пояс с оборудованием
@@ -1501,7 +1500,6 @@ X
 X-ray (Экс-рэй)
 Y
 Yellow (Еллоу)
-
 `;
 
     async function loadKnowledgeFromPages() {
@@ -1512,17 +1510,19 @@ Yellow (Еллоу)
     
     loadKnowledgeFromPages();
     
-    // --- ФУНКЦИЯ ОТПРАВКИ ЗАПРОСА К DEEPSEEK ---
+    // --- ФУНКЦИЯ ОТПРАВКИ ЗАПРОСА К OPENROUTER AI ---
     async function sendToAI(question) {
         try {
-            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEY}`
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'NYPD Assistant'
                 },
                 body: JSON.stringify({
-                    model: 'deepseek-chat',
+                    model: 'deepseek/deepseek-chat',
                     messages: [
                         {
                             role: 'system',
@@ -1567,7 +1567,7 @@ ${knowledgeBase.substring(0, 8000)}
             return data.choices[0].message.content;
         } catch (error) {
             console.error('Ошибка при запросе:', error);
-            return 'Извините, офицер не может вам ответить. Технические неполадки. Обратитесь в участок лично или позвоните 911.';
+            return 'Извините, офицер. Технические неполадки. Обратитесь в участок лично или позвоните 911.';
         }
     }
     
@@ -1641,7 +1641,7 @@ ${knowledgeBase.substring(0, 8000)}
         });
     }
     
-    console.log('Чат-помощник загружен (DeepSeek). Ожидайте загрузки базы знаний...');
+    console.log('Чат-помощник загружен (OpenRouter). Ожидайте загрузки базы знаний...');
     </script>
 </body>
 </html>
